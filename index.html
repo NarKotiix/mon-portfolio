@@ -4,69 +4,506 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio de [Votre Prénom Nom]" />
-  <title>Portfolio — [Votre Prénom Nom]</title>
-  <link rel="icon" href="favicon.ico" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Mon Portfolio — [Votre Prénom Nom]</title>
+
+  <!--
+  ══════════════════════════════════════════════════════════════════
+  TP MODULE 5 — Mon premier portfolio
+  ══════════════════════════════════════════════════════════════════
+
+  Ce fichier est votre squelette de départ.
+  Chaque section contient des commentaires qui expliquent QUOI faire
+  et POURQUOI — à vous de remplir, modifier, personnaliser !
+
+  STRUCTURE DU FICHIER :
+  ├── <head>         → Métadonnées, CSS lié
+  ├── <header>       → Navigation fixe en haut
+  ├── <section#hero> → Votre accroche principale
+  ├── <section#about>→ Qui êtes-vous ?
+  ├── <section#skills>→ Vos compétences
+  ├── <section#projects>→ Vos projets
+  ├── <section#contact>→ Formulaire de contact
+  ├── <footer>       → Bas de page
+  └── <script>       → JavaScript en fin de fichier
+  ══════════════════════════════════════════════════════════════════
+  -->
+
+  <!-- Lien vers votre fichier CSS — le chemin est relatif -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!--
+  RESSOURCES IMAGES — si vous n'avez pas encore vos photos :
+  • Placeholder neutre : https://placehold.co/400x400
+  • Photo aléatoire    : https://picsum.photos/400/400
+  • Photos libres      : https://www.pexels.com / https://unsplash.com
+  -->
+
 </head>
 
 <body>
 
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION — barre fixe en haut de page
+       • Elle reste visible quand on fait défiler (position: fixed en CSS)
+       • Le menu "burger" apparaît sur mobile (géré en JS)
+  ═══════════════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
 
-  <!-- Votre contenu va ici -->
+      <!-- Votre logo ou votre prénom — remplacez le texte -->
+      <a href="#hero" class="nav-logo">Prénom<span>.</span></a>
+
+      <!-- Liens de navigation — les # pointent vers les sections de la page -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Bouton burger pour mobile — les 3 traits sont créés en CSS -->
+      <!-- Le JS l'activera au clic pour ouvrir/fermer le menu -->
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
 
 
-  <script src="assets/js/script.js"></script>
-</body>
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO — la première chose que le visiteur voit
+       • Votre accroche : qui vous êtes en une phrase
+       • Photo ou illustration
+       • Bouton qui fait défiler vers vos projets
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
 
-<header class="navbar" id="navbar">
-  <nav class="nav-container">
+      <!-- Texte d'accroche — modifiez ces trois lignes -->
+      <p class="hero-subtitle">Bonjour, je suis</p>
+      <h1 class="hero-title">
+        <!-- Votre prénom et nom ici -->
+        Prénom <span class="highlight">Nom</span>
+      </h1>
+      <p class="hero-role">
+        <!-- Votre rôle ou ce que vous visez : Développeur web · Technicien IT... -->
+        Futur développeur web &amp; technicien numérique
+      </p>
+      <p class="hero-description">
+        <!--
+        Une ou deux phrases sur vous.
+        Exemple : "Passionné par le web et les nouvelles technologies,
+        je construis des interfaces modernes et accessibles."
+        -->
+        Passionné par le web et les nouvelles technologies.
+        En formation préqualification numérique à l'AFPA.
+      </p>
 
+      <!-- Boutons d'action -->
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-outline">Me contacter</a>
+      </div>
 
-    <!-- Votre prénom/logo — remplacez le texte -->
-    <a href="#hero" class="nav-logo">Prénom<span>.</span></a>
-
-
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#skills">Compétences</a></li>
-      <li><a href="#projects">Projets</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-
-
-    <!-- Bouton burger pour mobile (3 traits) -->
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-
-  </nav>
-</header>
-
-<section class="hero" id="hero">
-  <div class="hero-content">
-    <p class="hero-subtitle">Bonjour, je suis</p>
-    <h1 class="hero-title">
-      [Votre Prénom] <span class="highlight">[Votre Nom]</span>
-    </h1>
-    <p class="hero-role">[Votre rôle visé — ex: Futur développeur web]</p>
-    <p class="hero-description">
-      Motivé par l’univers du numérique, je m’intéresse tout particulièrement à la conception et au développement
-      d’applications web. Après avoir développé en autodidacte sur mon temps libre, je veux désormais faire du
-      développement web mon activité professionnelle principale.
-    </p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-      <a href="#contact" class="btn btn-outline">Me contacter</a>
     </div>
-  </div>
-  <div class="hero-image">
-    <!-- Votre photo — en attendant utilisez picsum.photos -->
-    <img src="https://picsum.photos/400/400?random=1" alt="Photo de [votre prénom]" class="profile-photo" />
-  </div>
-</section>
+
+    <div class="hero-image">
+      <!--
+      Remplacez src par votre propre photo.
+      En attendant, picsum.photos génère une belle photo aléatoire.
+      La taille 400x400 est recommandée pour une photo de profil.
+      -->
+      <img src="https://picsum.photos/400/400?random=1" alt="Photo de [votre prénom]" class="profile-photo" />
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       À PROPOS — qui êtes-vous vraiment ?
+       • Votre parcours en quelques lignes
+       • Quelques chiffres ou faits marquants
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <h2 class="section-title">À propos <span class="highlight">de moi</span></h2>
+
+      <div class="about-grid">
+
+        <div class="about-text">
+          Motivé par l’univers du numérique, je m’intéresse tout particulièrement à la conception et au développement
+          d’applications web. Après avoir développé en autodidacte sur mon temps libre, je veux désormais faire du
+          développement web mon activité professionnelle principale.
+
+          <p>
+            Pendant 3 ans à l'hôpital des armées, j'ai assuré la maintenance informatique du parc (migration XP→7→10),
+            la gestion de serveurs, la création de machines virtuelles et la configuration réseau (switchs, câblage). Ce
+            rôle exigeant m'a donné rigueur, réactivité et compétences techniques solides en environnement critique.
+            Suite à la fin de contrat, j'ai cherché à évoluer en maintenance mais le marché m'a orienté vers une
+            reconversion. Depuis le 9 mars, je suis une formation de préqualification numérique pour consolider mes
+            bases et choisir entre administration systèmes/réseaux (continuité de mon expertise) et développement web
+            full stack (créativité et évolution).
+          </p>
+          <p>
+            Aujourd'hui, je veux transformer ma passion pour le numérique et mon expérience terrain en métier durable,
+            en apportant ma rigueur militaire et ma soif d'apprendre dans des projets techniques stimulants.
+          </p>
+
+          <!-- Lien vers un CV PDF — mettez votre propre lien -->
+          <a href="#" class="btn btn-primary" download>
+            Télécharger mon CV
+          </a>
+        </div>
+
+        <!-- Quelques stats ou faits — modifiez les chiffres et labels -->
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Mois de formation</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Projets réalisés</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Motivé</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Curiosité</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       COMPÉTENCES — vos skills avec barres de progression
+       • Les barres sont animées en CSS au chargement
+       • Le pourcentage est défini dans l'attribut data-level
+       • Ajoutez ou supprimez des blocs .skill-item selon vos besoins
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="skills" id="skills">
+    <div class="container">
+
+      <h2 class="section-title">Mes <span class="highlight">compétences</span></h2>
+
+      <div class="skills-grid">
+
+        <!-- Catégorie 1 -->
+        <div class="skill-category">
+          <h3>Développement web</h3>
+
+          <!--
+          data-level = le pourcentage de la barre (0 à 100)
+          Modifiez les noms et les pourcentages selon votre niveau réel.
+          Soyez honnête — un recruteur peut vérifier !
+          -->
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">HTML</span>
+              <span class="skill-percent">75%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="75"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">CSS</span>
+              <span class="skill-percent">60%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="60"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-percent">40%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="40"></div>
+            </div>
+          </div>
+
+        </div><!-- fin .skill-category -->
+
+        <!-- Catégorie 2 — modifiez selon vos compétences -->
+        <div class="skill-category">
+          <h3>Systèmes &amp; réseaux</h3>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Windows / Linux</span>
+              <span class="skill-percent">70%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="70"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Réseaux TCP/IP</span>
+              <span class="skill-percent">55%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="55"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">VS Code</span>
+              <span class="skill-percent">80%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="80"></div>
+            </div>
+          </div>
+
+        </div><!-- fin .skill-category -->
+
+      </div><!-- fin .skills-grid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROJETS — vos réalisations sous forme de cartes
+       • Chaque carte a une image, un titre, des tags et des liens
+       • L'effet hover révèle une description (CSS overlay)
+       • Dupliquez le bloc .project-card pour ajouter des projets
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="projects" id="projects">
+    <div class="container">
+
+      <h2 class="section-title">Mes <span class="highlight">projets</span></h2>
+      <p class="section-subtitle">
+        Quelques réalisations — cliquez pour voir le code ou la démo
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- Projet 1 — remplacez le contenu -->
+        <div class="project-card">
+          <div class="project-image">
+            <!--
+            Remplacez par une capture d'écran de votre projet.
+            Taille recommandée : 600x400px
+            -->
+            <img src="https://picsum.photos/600/400?random=10" alt="Projet 1 — [nom du projet]" />
+            <!-- Overlay qui apparaît au survol -->
+            <div class="project-overlay">
+              <p class="project-description">
+                [Description courte de ce projet — ce que vous avez appris,
+                les technologies utilisées, le problème résolu.]
+              </p>
+              <div class="project-links">
+                <a href="#" class="btn btn-small">Voir le code</a>
+                <a href="#" class="btn btn-small btn-outline">Démo live</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">[Nom du projet 1]</h3>
+            <div class="project-tags">
+              <!-- Ajoutez les technologies utilisées -->
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div><!-- fin .project-card -->
+
+        <!-- Projet 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://picsum.photos/600/400?random=20" alt="Projet 2 — [nom du projet]" />
+            <div class="project-overlay">
+              <p class="project-description">
+                [Description de votre deuxième projet.]
+              </p>
+              <div class="project-links">
+                <a href="#" class="btn btn-small">Voir le code</a>
+                <a href="#" class="btn btn-small btn-outline">Démo live</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">[Nom du projet 2]</h3>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projet 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://picsum.photos/600/400?random=30" alt="Projet 3 — [nom du projet]" />
+            <div class="project-overlay">
+              <p class="project-description">
+                [Description de votre troisième projet.]
+              </p>
+              <div class="project-links">
+                <a href="#" class="btn btn-small">Voir le code</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">[Nom du projet 3]</h3>
+            <div class="project-tags">
+              <span class="tag">Réseau</span>
+              <span class="tag">CISCO</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- fin .projects-grid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTACT — formulaire simple
+       • Les champs sont validés en JavaScript avant envoi
+       • Sans backend, le formulaire affiche juste un message de succès
+       • Pour un vrai envoi, il faudra un service comme Formspree.io
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+
+      <h2 class="section-title">Me <span class="highlight">contacter</span></h2>
+      <p class="section-subtitle">
+        Une question ? Une opportunité ? N'hésitez pas !
+      </p>
+
+      <div class="contact-grid">
+
+        <!-- Informations de contact -->
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <h4>Email</h4>
+              <!-- Remplacez par votre email -->
+              <p>votre.email@exemple.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Localisation</h4>
+              <!-- Votre ville -->
+              <p>Paris, France</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div>
+              <h4>LinkedIn</h4>
+              <!-- Votre profil LinkedIn -->
+              <p><a href="#">linkedin.com/in/votreprofil</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <!--
+        NOTE : on n'utilise pas <form action="..."> car on valide en JS.
+        Pour un vrai envoi d'email, inscrivez-vous sur formspree.io
+        et remplacez action="#" par votre URL Formspree.
+        -->
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <div class="form-group">
+            <label for="name">Votre nom</label>
+            <input type="text" id="name" name="name" placeholder="Prénom Nom" required />
+            <!-- Le message d'erreur est affiché/caché par JS -->
+            <span class="error-message" id="name-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Votre email</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" required />
+            <span class="error-message" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Sujet</label>
+            <input type="text" id="subject" name="subject" placeholder="Objet de votre message" required />
+            <span class="error-message" id="subject-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Votre message ici..." required></textarea>
+            <span class="error-message" id="message-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Envoyer le message
+          </button>
+
+          <!-- Message de succès — caché par défaut, visible après envoi -->
+          <div class="success-message" id="success-message">
+            ✅ Message envoyé ! Je vous répondrai sous 48h.
+          </div>
+
+        </form>
+
+      </div><!-- fin .contact-grid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER — bas de page
+  ═══════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <!-- Remplacez par votre prénom et l'année en cours -->
+        © 2026 <span class="highlight">[Votre Prénom Nom]</span>
+        — Portfolio réalisé en HTML/CSS/JS
+      </p>
+      <!-- Liens vers vos profils — ajoutez ou supprimez -->
+      <div class="footer-links">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       BOUTON "RETOUR EN HAUT"
+       Apparaît quand on scrolle — géré en JS
+  ═══════════════════════════════════════════════════════════════ -->
+  <button class="back-to-top" id="back-to-top" aria-label="Retour en haut">
+    ↑
+  </button>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       JAVASCRIPT — toujours en fin de body, APRÈS le HTML
+       • Le navigateur charge d'abord le HTML, puis exécute le JS
+       • Si le JS était dans le <head>, il ne trouverait pas les éléments HTML
+  ═══════════════════════════════════════════════════════════════ -->
+  <script src="js/script.js"></script>
+
+</body>
 
 </html>
