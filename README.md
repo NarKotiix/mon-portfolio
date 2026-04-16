@@ -31,12 +31,15 @@ Ouvrez simplement le fichier `index.html` dans votre navigateur pour visualiser 
 ```
 mon-portfolio/
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-└── assets/
-    └── images/
+├── favicon.png
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+└── img/
+    ├── profil.jpg
+    └── projets/
 ```
 
 ## Contact
