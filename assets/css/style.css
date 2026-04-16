@@ -361,7 +361,7 @@ ul {
   object-fit: cover;      /* recadre l'image pour remplir le cercle */
   border-radius: 50%;     /* cercle parfait */
   border: 4px solid var(--accent-color);
-  box-shadow: 0 0 40px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 40px rgba(145, 113, 92, 0.295);
 }
 
 
