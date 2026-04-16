@@ -6,6 +6,8 @@ Portfolio personnel présentant mes projets et compétences.
 
 Ce portfolio a été créé pour mettre en valeur mes projets, compétences techniques et mon parcours professionnel.
 
+[Voir en ligne](https://narkotiix.github.io/mon-portfolio/)
+
 ## Technologies utilisées
 
 - HTML5
@@ -16,7 +18,7 @@ Ce portfolio a été créé pour mettre en valeur mes projets, compétences tech
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/mon-portfolio.git
+git clone https://github.com/NarKotiix/mon-portfolio.git
 
 # Accéder au dossier
 cd mon-portfolio
