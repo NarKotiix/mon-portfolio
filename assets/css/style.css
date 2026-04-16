@@ -1,4 +1,4 @@
-﻿/*
+/*
 ══════════════════════════════════════════════════════════════════
 TP MODULE 5 — style.css
 Portfolio personnel — HTML/CSS/JS
@@ -159,15 +159,14 @@ ul {
 
 /* Bouton plein (principal) */
 .btn-primary {
-  background-color: var(--accent-color);
+  background-color: #9e826f;
   color: white;
-  border-color: var(--accent-color);
+  border-color: #9e826f;
 }
 .btn-primary:hover {
-  background-color: #6d28d9;
-  border-color: #6d28d9;
-  transform: translateY(-2px); /* léger soulèvement au survol */
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  background-color: var(--accent-teal);
+  border-color: var(--accent-teal);
+  box-shadow: 0 8px 25px rgba(145, 113, 92, 0.4);
 }
 
 /* Bouton contour */
@@ -198,12 +197,12 @@ ul {
 .tag {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: rgba(124, 58, 237, 0.2);
+  background-color: #997c68;
   color: var(--accent-light);
   border-radius: var(--radius-full);
   font-size: 0.8rem;
   font-weight: 500;
-  border: 1px solid rgba(124, 58, 237, 0.4);
+  border: 1px solid rgba(145, 113, 92, 0.4);
 }
 
 
@@ -506,7 +505,7 @@ ul {
 .project-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent-color);
-  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 20px 40px rgba(145, 113, 92, 0.2);
 }
 
 /* Image du projet avec position relative pour l'overlay */
@@ -597,7 +596,7 @@ ul {
 .contact-icon {
   width: 48px;
   height: 48px;
-  background-color: rgba(124, 58, 237, 0.2);
+  background-color: rgba(145, 113, 92, 0.2);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -657,7 +656,7 @@ input, textarea {
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 0 0 3px rgba(145, 113, 92, 0.2);
 }
 
 /* Champ invalide (classe ajoutée par JS) */
@@ -737,7 +736,7 @@ input.invalid, textarea.invalid {
   pointer-events: auto;
 }
 .back-to-top:hover {
-  background-color: #6d28d9;
+  background-color: #91715c;
   transform: translateY(-3px);
 }
 
