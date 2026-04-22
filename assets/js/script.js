@@ -34,13 +34,80 @@ const navLinks = document.getElementById('nav-links');
 const backToTop = document.getElementById('back-to-top');
 const contactForm = document.getElementById('contact-form');
 const successMsg = document.getElementById('success-message');
+const particleCanvas = document.getElementById('particle-canvas');
+const heroTitle = document.querySelector('.hero-title-reveal');
 
 // Toutes les barres de compétences (NodeList = liste d'éléments)
 const skillBars = document.querySelectorAll('.skill-progress');
 
 // Tous les éléments à animer à l'apparition
 const revealElements = document.querySelectorAll('.reveal');
+const heroRevealElements = document.querySelectorAll('.hero-reveal');
 
+// Fond animé
+const particleState = {
+  ctx: null,
+  canvas: null,
+  width: 0,
+  height: 0,
+  dpr: 1,
+  pointerX: 0,
+  pointerY: 0,
+  targetX: 0,
+  targetY: 0,
+  particles: [],
+  rafId: 0,
+};
+
+const heroTitleState = {
+  timerId: null,
+};
+
+function animateHeroTitle() {
+  if (!heroTitle) return;
+
+  const finalText = heroTitle.dataset.final || heroTitle.textContent.trim();
+  const seedText = heroTitle.dataset.seed || finalText;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  heroTitle.textContent = '';
+
+  const seedChars = Array.from(seedText);
+  const finalChars = Array.from(finalText);
+  const maxLength = Math.max(seedChars.length, finalChars.length);
+  const charSpans = [];
+
+  for (let index = 0; index < maxLength; index += 1) {
+    const span = document.createElement('span');
+    span.className = 'hero-title-char';
+    span.setAttribute('aria-hidden', 'true');
+    span.classList.add('seed');
+    span.textContent = seedChars[index] ?? finalChars[index] ?? ' ';
+    heroTitle.appendChild(span);
+    charSpans.push(span);
+  }
+
+  if (prefersReducedMotion) {
+    charSpans.forEach((span, index) => {
+      span.textContent = finalChars[index] ?? ' ';
+      span.classList.add('visible');
+    });
+    return;
+  }
+
+  const revealChar = index => {
+    if (index >= charSpans.length) return;
+
+    const nextValue = finalChars[index] ?? ' ';
+    charSpans[index].classList.remove('seed');
+    charSpans[index].textContent = nextValue;
+    charSpans[index].classList.add('visible');
+
+    heroTitleState.timerId = window.setTimeout(() => revealChar(index + 1), 120);
+  };
+
+  heroTitleState.timerId = window.setTimeout(() => revealChar(0), 280);
+}
 
 /* ═══════════════════════════════════════════════════════════════
    2. NAVIGATION
@@ -69,6 +136,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     navLinks.classList.remove('open');
   });
 });
+
+
 
 
 /* ── 2b. Navbar qui change d'apparence au scroll ───────────── */
@@ -110,6 +179,142 @@ if (backToTop) {
       behavior: 'smooth' // défilement fluide
     });
   });
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   2d. FOND ANIMÉ — particules légères + réaction au pointeur
+═══════════════════════════════════════════════════════════════ */
+
+function initAnimatedBackground() {
+  if (!particleCanvas) return;
+
+  const ctx = particleCanvas.getContext('2d');
+  if (!ctx) return;
+
+  particleState.ctx = ctx;
+  particleState.canvas = particleCanvas;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const particleCount = prefersReducedMotion ? 30 : 72;
+
+  function resizeCanvas() {
+    const { innerWidth, innerHeight, devicePixelRatio } = window;
+    particleState.dpr = Math.min(devicePixelRatio || 1, 2);
+    particleState.width = innerWidth;
+    particleState.height = innerHeight;
+    particleCanvas.width = Math.floor(innerWidth * particleState.dpr);
+    particleCanvas.height = Math.floor(innerHeight * particleState.dpr);
+    particleCanvas.style.width = `${innerWidth}px`;
+    particleCanvas.style.height = `${innerHeight}px`;
+    ctx.setTransform(particleState.dpr, 0, 0, particleState.dpr, 0, 0);
+  }
+
+  function createParticles() {
+    particleState.particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random() * particleState.width,
+      y: Math.random() * particleState.height,
+      radius: 0.8 + Math.random() * 2.2,
+      baseRadius: 0.8 + Math.random() * 2.2,
+      speedX: -0.14 + Math.random() * 0.28,
+      speedY: -0.16 + Math.random() * 0.32,
+      alpha: 0.18 + Math.random() * 0.45,
+      pulse: Math.random() * Math.PI * 2,
+    }));
+  }
+
+  function draw() {
+    const { ctx, width, height, particles } = particleState;
+    ctx.clearRect(0, 0, width, height);
+
+    const pointerInfluence = 0.0062;
+
+    for (let i = 0; i < particles.length; i += 1) {
+      const particle = particles[i];
+      const dx = particle.x - particleState.targetX;
+      const dy = particle.y - particleState.targetY;
+      const distance = Math.max(Math.hypot(dx, dy), 1);
+      const repulse = Math.max(0, 1 - distance / 380);
+
+      particle.x += particle.speedX + dx * repulse * pointerInfluence;
+      particle.y += particle.speedY + dy * repulse * pointerInfluence;
+      particle.pulse += 0.01;
+      particle.radius = particle.baseRadius + Math.sin(particle.pulse) * 0.35;
+
+      if (particle.x < -20) particle.x = width + 20;
+      if (particle.x > width + 20) particle.x = -20;
+      if (particle.y < -20) particle.y = height + 20;
+      if (particle.y > height + 20) particle.y = -20;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(231, 222, 214, ${particle.alpha})`;
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j += 1) {
+        const other = particles[j];
+        const linkDistance = Math.hypot(particle.x - other.x, particle.y - other.y);
+        if (linkDistance < 130) {
+          const lineAlpha = (1 - linkDistance / 140) * 0.24;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(143, 111, 90, ${lineAlpha})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(particle.x, particle.y);
+          ctx.lineTo(other.x, other.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    particleState.targetX += (particleState.pointerX - particleState.targetX) * 0.18;
+    particleState.targetY += (particleState.pointerY - particleState.targetY) * 0.18;
+
+    const pointerGlow = ctx.createRadialGradient(
+      particleState.targetX,
+      particleState.targetY,
+      0,
+      particleState.targetX,
+      particleState.targetY,
+      120,
+    );
+    pointerGlow.addColorStop(0, 'rgba(159, 130, 111, 0.28)');
+    pointerGlow.addColorStop(0.32, 'rgba(143, 111, 90, 0.12)');
+    pointerGlow.addColorStop(1, 'rgba(143, 111, 90, 0)');
+
+    ctx.beginPath();
+    ctx.fillStyle = pointerGlow;
+    ctx.arc(particleState.targetX, particleState.targetY, 120, 0, Math.PI * 2);
+    ctx.fill();
+
+    particleState.rafId = window.requestAnimationFrame(draw);
+  }
+
+  resizeCanvas();
+  createParticles();
+  particleState.pointerX = particleState.targetX = particleState.width / 2;
+  particleState.pointerY = particleState.targetY = particleState.height / 2;
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createParticles();
+  });
+
+  window.addEventListener('pointermove', (event) => {
+    particleState.pointerX = event.clientX;
+    particleState.pointerY = event.clientY;
+  });
+
+  window.addEventListener('pointerleave', () => {
+    particleState.pointerX = particleState.width / 2;
+    particleState.pointerY = particleState.height / 2;
+  });
+
+  if (!prefersReducedMotion) {
+    draw();
+  } else {
+    draw();
+    window.cancelAnimationFrame(particleState.rafId);
+  }
 }
 
 
@@ -308,6 +513,11 @@ document.querySelectorAll('input, textarea').forEach(field => {
 document.addEventListener('DOMContentLoaded', () => {
   revealOnScroll();
   animateSkillBars();
+  initAnimatedBackground();
+  animateHeroTitle();
+  heroRevealElements.forEach((el, index) => {
+    el.style.setProperty('--hero-delay', `${index * 0.12}s`);
+  });
 });
 
 /*

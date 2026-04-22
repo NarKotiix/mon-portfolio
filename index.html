@@ -42,6 +42,13 @@
 
 <body>
 
+  <div class="animated-bg" aria-hidden="true">
+    <canvas id="particle-canvas"></canvas>
+    <div class="bg-orb bg-orb-one"></div>
+    <div class="bg-orb bg-orb-two"></div>
+    <div class="bg-orb bg-orb-three"></div>
+  </div>
+
   <!-- ═══════════════════════════════════════════════════════════
        NAVIGATION — barre fixe en haut de page
        • Elle reste visible quand on fait défiler (position: fixed en CSS)
@@ -83,16 +90,15 @@
     <div class="hero-content">
 
       <!-- Texte d'accroche — modifiez ces trois lignes -->
-      <p class="hero-subtitle">Bonjour, je suis</p>
-      <h1 class="hero-title">
-        <!-- Votre prénom et nom ici -->
-        Bryan <span class="highlight">Lefranc</span>
+      <p class="hero-subtitle hero-reveal" style="--hero-delay: 0s;">Bonjour, je suis</p>
+      <h1 class="hero-title hero-reveal hero-title-reveal" style="--hero-delay: 0.12s;" aria-label="Lefranc Bryan" lang="fr" data-final="Lefranc Bryan" data-seed="レフランクブライアン">
+        Lefranc Bryan
       </h1>
-      <p class="hero-role">
+      <p class="hero-role hero-reveal" style="--hero-delay: 0.24s;">
         <!-- Votre rôle ou ce que vous visez : Développeur web · Technicien IT... -->
         Futur développeur web &amp; technicien numérique
       </p>
-      <p class="hero-description">
+      <p class="hero-description hero-reveal" style="--hero-delay: 0.36s;">
         <!--
         Une ou deux phrases sur vous.
         Exemple : "Passionné par le web et les nouvelles technologies,
@@ -103,7 +109,7 @@
       </p>
 
       <!-- Boutons d'action -->
-      <div class="hero-buttons">
+      <div class="hero-buttons hero-reveal" style="--hero-delay: 0.48s;">
         <a href="#projects" class="btn btn-primary">Voir mes projets</a>
         <a href="#contact" class="btn btn-outline">Me contacter</a>
       </div>
