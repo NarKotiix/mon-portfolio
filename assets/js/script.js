@@ -103,7 +103,7 @@ function animateHeroTitle() {
     charSpans[index].textContent = nextValue;
     charSpans[index].classList.add('visible');
 
-    heroTitleState.timerId = window.setTimeout(() => revealChar(index + 1), 120);
+    heroTitleState.timerId = window.setTimeout(() => revealChar(index + 1), 60);
   };
 
   heroTitleState.timerId = window.setTimeout(() => revealChar(0), 280);
